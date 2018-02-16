@@ -5,9 +5,9 @@ import java.util.Stack;
 
 
 public class Deck {
-    private Card[] cards;
-    private int cardsInDeck;
-    private Stack<Card> stack;
+    private Card[] cards;          //STATIC
+    private int cardsInDeck;        //STATIC
+    private Stack<Card> stack;          //STATIC
     public Deck(){
         cards = new Card[52];
         cardsInDeck = cards.length;

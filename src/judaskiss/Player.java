@@ -6,14 +6,16 @@ import java.util.Stack;
 public class Player {
     private String name;
     private int points;
-    private Stack stack;
+    private Stack<Card> stack;
     private Card[] hand;
+    private int num;
     
-    public Player(String name){
+    public Player(String name,int num){
         this.name=name;
         points=0;
         hand = new Card[4];
-        stack=new Stack();
+        stack=new Stack<>();
+        this.num=num;
     }
 
     public String getName() {
@@ -32,12 +34,20 @@ public class Player {
         this.points = points;
     }
 
-    public Stack getStack() {
+    public Stack<Card> getStack() {
         return stack;
     }
 
-    public void setStack(Stack stack) {
+    public void setStack(Stack<Card> stack) {
         this.stack = stack;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
     }
 
     public Card[] getHand() {

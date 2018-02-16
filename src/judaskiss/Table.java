@@ -3,11 +3,11 @@ package judaskiss;
 import java.util.Stack;
 
 public class Table {
-    private Stack mainStack;
-    private Stack stackSlot1;
-    private Stack stackSlot2;
-    private Stack stackSlot3;
-    private Stack stackSlot4;
+    private Stack<Card> mainStack;
+    private Stack<Card> stackSlot1;
+    private Stack<Card> stackSlot2;
+    private Stack<Card> stackSlot3;
+    private Stack<Card> stackSlot4;
     
     
     public Table(){
@@ -18,43 +18,43 @@ public class Table {
         stackSlot4 = new Stack();
     }
 
-    public Stack getMainStack() {
+    public Stack<Card> getMainStack() {
         return mainStack;
     }
 
-    public Stack getStackSlot1() {
+    public Stack<Card> getStackSlot1() {
         return stackSlot1;
     }
 
-    public void setStackSlot1(Stack stackSlot1) {
+    public void setStackSlot1(Stack<Card> stackSlot1) {
         this.stackSlot1 = stackSlot1;
     }
 
-    public Stack getStackSlot2() {
+    public Stack<Card> getStackSlot2() {
         return stackSlot2;
     }
 
-    public void setStackSlot2(Stack stackSlot2) {
+    public void setStackSlot2(Stack<Card> stackSlot2) {
         this.stackSlot2 = stackSlot2;
     }
 
-    public Stack getStackSlot3() {
+    public Stack<Card> getStackSlot3() {
         return stackSlot3;
     }
 
-    public void setStackSlot3(Stack stackSlot3) {
+    public void setStackSlot3(Stack<Card> stackSlot3) {
         this.stackSlot3 = stackSlot3;
     }
 
-    public Stack getStackSlot4() {
+    public Stack<Card> getStackSlot4() {
         return stackSlot4;
     }
 
-    public void setStackSlot4(Stack stackSlot4) {
+    public void setStackSlot4(Stack<Card> stackSlot4) {
         this.stackSlot4 = stackSlot4;
     }
 
-    public void setMainStack(Stack mainStack) {
+    public void setMainStack(Stack<Card> mainStack) {
         this.mainStack = mainStack;
     }
     
