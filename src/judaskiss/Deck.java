@@ -14,7 +14,7 @@ public class Deck {
         stack = new Stack<>();
     }
     
-    public void shuffle(){
+    public void shuffle(Deck deck,Card[] cards){
         int newI;                                                     // SHUFFLE CARDS//
         Card temp;
         Random randIndex = new Random();
@@ -30,29 +30,29 @@ public class Deck {
         cards[newI] = temp;
         }                                                              // ADD SHUFFLED CARDS TO DECK STACK
         for(int i = 0 ; i<cards.length;i++){
-            stack.push(cards[i]);
+            deck.stack.push(cards[i]);
         }
         
     }
     
-    public void deal(Player player1,Player player2,Player player3, Player player4){
+    public void deal(Deck deck,Player player1,Player player2,Player player3, Player player4){
         for(int i = 0 ; i<player1.getHand().length;i++){
-            player1.getHand()[i] = stack.pop();
+            player1.getHand()[i] = deck.stack.pop();
         }
         for(int i = 0 ; i<player2.getHand().length;i++){
-            player2.getHand()[i] = stack.pop();
+            player2.getHand()[i] = deck.stack.pop();
         }
         for(int i = 0 ; i<player3.getHand().length;i++){
-            player3.getHand()[i] = stack.pop();
+            player3.getHand()[i] = deck.stack.pop();
         }
         for(int i = 0 ; i<player4.getHand().length;i++){
-            player4.getHand()[i] = stack.pop();
+            player4.getHand()[i] = deck.stack.pop();
         }
     }
     
-    public void tableDeal(Table table){                                // DEALS 4 CARDS TO THE TABLE FOR THE FIRST ROUND
-        for(int i = 0 ; i<table.getCardSlot().length;i++){
-            table.getCardSlot()[i] = stack.pop();
+    public void tableDeal(Deck deck,Table table,Stack stackSlot1,Stack stackSlot2,Stack stackSlot3,Stack stackSlot4){      // DEALS 4 CARDS TO THE TABLE FOR THE FIRST ROUND
+        for(int i = 0 ; i<3;i++){
+            table.getStackSlot1().push(deck.stack.pop());
         }
     }
     
