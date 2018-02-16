@@ -55,5 +55,5 @@ public class Game {
             victimPlayer.getStack().push(table.getMainStack().pop());
         }
     }
-    
-}
+        
+    }

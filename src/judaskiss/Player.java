@@ -57,7 +57,12 @@ public class Player {
     public void setHand(Card[] hand) {
         this.hand = hand;
     }
-
+    public int getPlayerNum(){
+        return num;
+    }
+    public void setPlayerNum(int num){
+        this.num = num;
+    }
     
     
 }
