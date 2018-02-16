@@ -26,4 +26,11 @@ public class Game {
         if(card.getStatus().equals(stack.peek())) return true;
         else return false;
     }
+    public void putCard(){
+      
+    }
+    public void chooseCard(){
+        
+    }
+    
 }

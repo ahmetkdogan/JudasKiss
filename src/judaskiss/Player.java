@@ -8,12 +8,14 @@ public class Player {
     private int points;
     private Stack stack;
     private Card[] hand;
+    private int num;
     
     public Player(String name){
         this.name=name;
         points=0;
         hand = new Card[4];
         stack=new Stack();
+        
     }
 
     public String getName() {
@@ -47,7 +49,12 @@ public class Player {
     public void setHand(Card[] hand) {
         this.hand = hand;
     }
-
+    public int getPlayerNum(){
+        return num;
+    }
+    public void setPlayerNum(int num){
+        this.num = num;
+    }
     
     
 }
