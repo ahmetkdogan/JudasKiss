@@ -13,6 +13,10 @@ public class Card {
         this.status=status;
         this.point=point;
     }
+    
+    public String toString(){
+        return name;
+    }
 
     public String getName() {
         return name;
