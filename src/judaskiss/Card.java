@@ -13,6 +13,9 @@ public class Card {
         this.status=status;
         this.point=point;
     }
+    public Card(){
+        this.name = "";
+    }
     
     public String toString(){
         return name;

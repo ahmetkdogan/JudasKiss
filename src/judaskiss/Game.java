@@ -24,7 +24,7 @@ public class Game {
     public void putCard(Card card, Stack<Card> targetStack, Stack<Card> victimStack){                                 //USER PLAYS A CARD TO ANOTHER PLAYER'S STACK
         if(!targetStack.isEmpty() && card.getStatus().equals(targetStack.peek().getStatus())) {           //WE PUT OUR CARD TO TARGETPLAYER AND MOVE TO VICTIMPLAYER
             targetStack.push(card);
-            card = null; //--------------------------------//
+            //card = null; //--------------------------------//
             move(targetStack, victimStack);
         }
         else putCard(card,table,victimStack);
@@ -35,7 +35,7 @@ public class Game {
         if(!table.getMainStack().isEmpty())
         temp = card.getStatus().equals(table.getMainStack().peek().getStatus()); // TRUE IF PLAYED CARD'S STATUS IS SAME WITH THE TOP OF THE MAIN STACK'S CARD'S STATUS
         table.getMainStack().push(card);
-        card=null;
+        //card=null;
         if(temp){
             move(table,victimStack);
         }
@@ -48,7 +48,7 @@ public class Game {
 
     public void move(Stack<Card> currentStack , Stack<Card> targetStack) {     //TAKE AND MOVE THE CARDS TO ANOTHER PLAYER'S STACK
         Card temp = currentStack.peek();
-        while(temp.getStatus().equals(currentStack.peek().getStatus())){
+        while(!currentStack.isEmpty() && temp.getStatus().equals(currentStack.peek().getStatus())){
             targetStack.push(currentStack.pop()) ;
         }
     }
@@ -65,23 +65,25 @@ public class Game {
         else if(stackName.equals("Player3 Stack")) return player3.getStack();
         else if(stackName.equals("Player4 Stack")) return player4.getStack();
         else if(stackName.equals("Main Stack")) return table.getMainStack();
-        else if(stackName.equals("Stackslot 1")) return table.getStackSlot1();
-        else if(stackName.equals("Stackslot 2")) return table.getStackSlot2();
-        else if(stackName.equals("Stackslot 3")) return table.getStackSlot3();
-        else if(stackName.equals("Stackslot 4")) return table.getStackSlot4();
-        else return table.getMainStack();
+        else if(stackName.equals("Stack Slot1")) return table.getStackSlot1();
+        else if(stackName.equals("Stack Slot2")) return table.getStackSlot2();
+        else if(stackName.equals("Stack Slot3")) return table.getStackSlot3();
+        else if(stackName.equals("Stack Slot4")) return table.getStackSlot4();
+        else if(stackName.equals("Main Stack")) return table.getMainStack();
+        else if(stackName.equals("Dummy Stack")) return table.getDummyStack();
+        else return table.getDummyStack();
     }
     
     public String printInfo(){
         String temp = "";
         if(!player1.getStack().isEmpty())
-        temp += "Player1 Stack : " + player1.getStack().peek() + "\n";
+        temp += "Player1 Stack : " + player1.getStack() + "\n";
         if(!player2.getStack().isEmpty())
-        temp += "Player2 Stack : " + player2.getStack().peek() + "\n";
+        temp += "Player2 Stack : " + player2.getStack() + "\n";
         if(!player3.getStack().isEmpty())
-        temp += "Player3 Stack : " + player3.getStack().peek() + "\n";
+        temp += "Player3 Stack : " + player3.getStack() + "\n";
         if(!player4.getStack().isEmpty())
-        temp += "Player4 Stack : " + player4.getStack().peek() + "\n";
+        temp += "Player4 Stack : " + player4.getStack() + "\n";
         if(!table.getMainStack().isEmpty())
         temp += "Main Stack : " + table.getMainStack() + "\n";
         if(!table.getStackSlot1().isEmpty())

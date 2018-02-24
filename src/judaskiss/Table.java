@@ -8,6 +8,7 @@ public class Table {
     private Stack<Card> stackSlot2;
     private Stack<Card> stackSlot3;
     private Stack<Card> stackSlot4;
+    private Stack<Card> dummyStack;
     
     
     public Table(){
@@ -56,6 +57,14 @@ public class Table {
 
     public void setMainStack(Stack<Card> mainStack) {
         this.mainStack = mainStack;
+    }
+
+    public Stack<Card> getDummyStack() {
+        return dummyStack;
+    }
+
+    public void setDummyStack(Stack<Card> dummyStack) {
+        this.dummyStack = dummyStack;
     }
     
     
