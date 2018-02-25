@@ -105,10 +105,15 @@ public class Deck {
     }
     
     public void tableDeal(Table table){      // DEALS 4 CARDS TO THE TABLE FOR THE FIRST ROUND --------------------------------
+        int temp = 1;
         table.getStackSlot1().push(stack.pop());
-        table.getStackSlot2().push(stack.pop());
-        table.getStackSlot3().push(stack.pop());
-        table.getStackSlot4().push(stack.pop());
+        while(temp<4 && table.getStackSlot1().peek().getStatus().equals(stack.peek().getStatus())){table.getStackSlot1().push(stack.pop()); temp++;}
+        if(temp<4){table.getStackSlot2().push(stack.pop()); temp++;}
+        while(temp<4 && table.getStackSlot2().peek().getStatus().equals(stack.peek().getStatus())){table.getStackSlot2().push(stack.pop()); temp++;}
+        if(temp<4){table.getStackSlot3().push(stack.pop()); temp++;}
+        while(temp<4 && table.getStackSlot3().peek().getStatus().equals(stack.peek().getStatus())){table.getStackSlot3().push(stack.pop()); temp++;}
+        if(temp<4){table.getStackSlot4().push(stack.pop()); temp++;}
+        while(temp<4 && table.getStackSlot4().peek().getStatus().equals(stack.peek().getStatus())){table.getStackSlot4().push(stack.pop()); temp++;}
     }
 
     public Card[] getCards() {

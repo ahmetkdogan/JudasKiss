@@ -76,26 +76,50 @@ public class Game {
     
     public String printInfo(){
         String temp = "";
-        if(!player1.getStack().isEmpty())
-        temp += "Player1 Stack : " + player1.getStack() + "\n";
-        if(!player2.getStack().isEmpty())
-        temp += "Player2 Stack : " + player2.getStack() + "\n";
-        if(!player3.getStack().isEmpty())
-        temp += "Player3 Stack : " + player3.getStack() + "\n";
-        if(!player4.getStack().isEmpty())
-        temp += "Player4 Stack : " + player4.getStack() + "\n";
+        if(!player1.getStack().isEmpty()){
+            player1.setPoints(getPoint(player1.getStack()));
+            temp += "Player1 Stack : " + player1.getStack() +" Points: "+ player1.getPoints() +"\n";
+            }
+        
+        if(!player2.getStack().isEmpty()){
+            player2.setPoints(getPoint(player2.getStack()));
+            temp += "Player2 Stack : " + player2.getStack() +" Points: "+ player2.getPoints()+ "\n";
+            }
+        
+        if(!player3.getStack().isEmpty()){
+            player3.setPoints(getPoint(player3.getStack()));
+            temp += "Player3 Stack : " + player3.getStack() +" Points: "+ player3.getPoints() + "\n";
+        }
+        
+        if(!player4.getStack().isEmpty()){
+            player4.setPoints(getPoint(player4.getStack()));
+            temp += "Player4 Stack : " + player4.getStack() +" Points: "+ player4.getPoints() + "\n";
+        }
+        
         if(!table.getMainStack().isEmpty())
-        temp += "Main Stack : " + table.getMainStack() + "\n";
+            temp += "Main Stack : " + table.getMainStack() +" Points: "+getPoint(table.getMainStack()) +"\n";
         if(!table.getStackSlot1().isEmpty())
-        temp += "Stack Slot1 : " + table.getStackSlot1()+ "\n";
+            temp += "Stack Slot1 : " + table.getStackSlot1()+ " Points: "+getPoint(table.getStackSlot1()) +"\n";
         if(!table.getStackSlot2().isEmpty())
-        temp += "Stack Slot2 : " + table.getStackSlot2() + "\n";
+            temp += "Stack Slot2 : " + table.getStackSlot2() +" Points: "+getPoint(table.getStackSlot2()) + "\n";
         if(!table.getStackSlot3().isEmpty())
-        temp += "Stack Slot3 : " + table.getStackSlot3() + "\n";
+            temp += "Stack Slot3 : " + table.getStackSlot3() +" Points: "+getPoint(table.getStackSlot3()) + "\n";
         if(!table.getStackSlot4().isEmpty())
-        temp += "Stack Slot4 : " + table.getStackSlot4() + "\n";
+            temp += "Stack Slot4 : " + table.getStackSlot4() +" Points: "+getPoint(table.getStackSlot4()) + "\n";
         
         return temp;
+    }
+    public int getPoint(Stack<Card> stack){
+        Stack<Card> tempStack = new Stack();
+        int points = 0;
+        while(!stack.isEmpty()){
+            points += stack.peek().getPoint();
+            tempStack.push(stack.pop());
+        }
+        while(!tempStack.isEmpty()){
+            stack.push(tempStack.pop());
+        }
+        return points;
     }
         
 }

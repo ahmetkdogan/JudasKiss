@@ -17,6 +17,7 @@ public class JudasKiss {
         deck.shuffle();
         deck.tableDeal(table);
         
+        
         for(int i = 0 ; i<4;i++){
             deck.deal(player1, player2, player3, player4);
             round.start();
