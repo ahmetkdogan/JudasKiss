@@ -69,7 +69,7 @@ public class Turn {
             System.out.println("Choose victim stack");
             temp = scan.nextLine();
             victimStack = game.findStack(temp);
-            if(victimStack==game.findStack("Dummy Stack")) victimStackFound = false;
+            if(victimStack==game.findStack("Dummy Stack") || victimStack==game.findStack("Main Stack")) victimStackFound = false;
             }while(!victimStackFound);
         
         }
