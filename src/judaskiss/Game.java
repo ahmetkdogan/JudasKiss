@@ -25,7 +25,7 @@ public class Game {
     public void putCard(Card card, Stack<Card> targetStack, Stack<Card> victimStack){                                 //USER PLAYS A CARD TO ANOTHER PLAYER'S STACK
         if(!targetStack.isEmpty() && card.getStatus().equals(targetStack.peek().getStatus())) {           //WE PUT OUR CARD TO TARGETPLAYER AND MOVE TO VICTIMPLAYER
             targetStack.push(card);
-            //card = null; //--------------------------------//
+            
             move(targetStack, victimStack);
         }
         else putCard(card,table,victimStack);
@@ -33,10 +33,10 @@ public class Game {
     
     public void putCard(Card card, Table table,Stack<Card> victimStack){
         boolean temp = false;
-        if(!table.getMainStack().isEmpty())
-        temp = card.getStatus().equals(table.getMainStack().peek().getStatus()); // TRUE IF PLAYED CARD'S STATUS IS SAME WITH THE TOP OF THE MAIN STACK'S CARD'S STATUS
+        if(!table.getMainStack().isEmpty()) temp = card.getStatus().equals(table.getMainStack().peek().getStatus()); // TRUE IF PLAYED CARD'S STATUS IS SAME WITH THE TOP OF THE MAIN STACK'S CARD'S STATUS
+        
         table.getMainStack().push(card);
-        //card=null;
+        
         if(temp){
             move(table,victimStack);
         }
@@ -55,7 +55,7 @@ public class Game {
     }
     public void move(Table table,Stack<Card> victimStack){
         Card temp = table.getMainStack().peek();
-        while(temp.getStatus().equals(table.getMainStack().peek().getStatus())){
+        while(!table.getMainStack().isEmpty() && temp.getStatus().equals(table.getMainStack().peek().getStatus())){
             victimStack.push(table.getMainStack().pop());
         }
     }

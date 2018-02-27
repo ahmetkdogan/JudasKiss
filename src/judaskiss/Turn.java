@@ -142,7 +142,7 @@ public class Turn {
         else selfVictim = false;
             }while(selfVictim);
         //ENDS HERE//
-        game.putCard(pickedCard, targetStack,victimStack );
+        game.putCard(pickedCard, targetStack,victimStack);
         
     }
     
