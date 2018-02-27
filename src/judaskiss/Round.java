@@ -30,5 +30,21 @@ public class Round {
         player3.setHand(new Card[4]);
         player4.setHand(new Card[4]);
     }
+    public void botStart(){
+        Turn turn1 = new Turn(player1,game);
+        Turn turn2=new Turn(player2,game);
+        Turn turn3=new Turn(player3,game);
+        Turn turn4=new Turn(player4,game);
+        for(int i = 0 ; i<4;i++){
+        turn1.start();
+        turn2.botStart();
+        turn3.botStart();
+        turn4.botStart();
+        }
+        player1.setHand(new Card[4]);
+        player2.setHand(new Card[4]);
+        player3.setHand(new Card[4]);
+        player4.setHand(new Card[4]);
+    }
     
 }

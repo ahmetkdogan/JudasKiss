@@ -74,8 +74,9 @@ public class Turn {
         
         }
         else victimStack = game.findStack("Player1 Stack");
-        game.putCard(pickedCard, targetStack,victimStack );
         //ENDS HERE//
+        game.putCard(pickedCard, targetStack,victimStack );
+        
     }
     public String printArray(Card[] card){
         String temp = "";
@@ -84,6 +85,65 @@ public class Turn {
             temp += card[i].getName()+" ,";
         }
         return temp;
+    }
+    
+    public void botStart(){
+        //CARD PICKING//
+        boolean cardPicked = false;
+        boolean isMatchable = false;
+        for(int i = 0 ; i<player.getHand().length;i++){
+            if((!game.findStack("Stack Slot1").isEmpty()  && player.getHand()[i].getStatus().equals(game.findStack("Stack Slot1").peek().getStatus()) ) || (!game.findStack("Stack Slot2").isEmpty()  && player.getHand()[i].getStatus().equals(game.findStack("Stack Slot2").peek().getStatus()) )||(!game.findStack("Stack Slot3").isEmpty()  && player.getHand()[i].getStatus().equals(game.findStack("Stack Slot3").peek().getStatus()) )||(!game.findStack("Stack Slot4").isEmpty()  && player.getHand()[i].getStatus().equals(game.findStack("Stack Slot4").peek().getStatus()) )||(!game.findStack("Player1 Stack").isEmpty()  && player.getHand()[i].getStatus().equals(game.findStack("Player1 Stack").peek().getStatus()) )||(!game.findStack("Player2 Stack").isEmpty()  && player.getHand()[i].getStatus().equals(game.findStack("Player2 Stack").peek().getStatus()) )||(!game.findStack("Player3 Stack").isEmpty()  && player.getHand()[i].getStatus().equals(game.findStack("Player3 Stack").peek().getStatus()) )||(!game.findStack("Player4 Stack").isEmpty()  && player.getHand()[i].getStatus().equals(game.findStack("Player4 Stack").peek().getStatus()) ) || (!game.findStack("Main Stack").isEmpty()  && player.getHand()[i].getStatus().equals(game.findStack("Main Stack").peek().getStatus()) ) ){
+            cardPicked = true;
+            isMatchable = true;
+            pickedCard = player.getHand()[i];
+            break;
+            }
+        }
+        if(!cardPicked){
+                int temp = (int)(Math.random()*player.getHand().length);
+                pickedCard = player.getHand()[temp];
+            }
+        //ENDS HERE//
+        
+        //CHOOSING TARGET STACK//
+        if(isMatchable){
+            if((!game.findStack("Stack Slot1").isEmpty()  && pickedCard.getStatus().equals(game.findStack("Stack Slot1").peek().getStatus()) )) targetStack = game.findStack("Stack Slot1");
+            else if((!game.findStack("Stack Slot2").isEmpty()  && pickedCard.getStatus().equals(game.findStack("Stack Slot2").peek().getStatus()) )) targetStack = game.findStack("Stack Slot2");
+            else if((!game.findStack("Stack Slot3").isEmpty()  && pickedCard.getStatus().equals(game.findStack("Stack Slot3").peek().getStatus()) )) targetStack = game.findStack("Stack Slot3");
+            else if((!game.findStack("Stack Slot4").isEmpty()  && pickedCard.getStatus().equals(game.findStack("Stack Slot4").peek().getStatus()) )) targetStack = game.findStack("Stack Slot4");
+            else if((!game.findStack("Player1 Stack").isEmpty()  && pickedCard.getStatus().equals(game.findStack("Player1 Stack").peek().getStatus()) )) targetStack = game.findStack("Player1 Stack");
+            else if((!game.findStack("Player2 Stack").isEmpty()  && pickedCard.getStatus().equals(game.findStack("Player2 Stack").peek().getStatus()) )) targetStack = game.findStack("Player2 Stack");
+            else if((!game.findStack("Player3 Stack").isEmpty()  && pickedCard.getStatus().equals(game.findStack("Player3 Stack").peek().getStatus()) )) targetStack = game.findStack("Player3 Stack");
+            else if((!game.findStack("Player4 Stack").isEmpty()  && pickedCard.getStatus().equals(game.findStack("Player4 Stack").peek().getStatus()) )) targetStack = game.findStack("Player4 Stack");
+            else targetStack = game.findStack("Main Stack");
+        }
+        else targetStack = game.findStack("Main Stack");
+        //ENDS HERE//
+        
+        //CHOOSING VICTIM STACK//
+        boolean selfVictim = false;
+        do{
+        int temp2 = (int)(Math.random()*4);
+            switch (temp2) {
+                case 0:
+                    victimStack = game.findStack("Player1 Stack");
+                    break;
+                case 1:
+                    victimStack = game.findStack("Player2 Stack");
+                    break;
+                case 2:
+                    victimStack = game.findStack("Player3 Stack");
+                    break;
+                default:
+                    victimStack = game.findStack("Player4 Stack");
+                    break;
+            }
+        if(victimStack == player.getStack()) selfVictim = true;
+        else selfVictim = false;
+            }while(selfVictim);
+        //ENDS HERE//
+        game.putCard(pickedCard, targetStack,victimStack );
+        
     }
     
 }
