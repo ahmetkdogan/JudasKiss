@@ -53,6 +53,7 @@ public class Turn {
         // CHOOSING TARGET STACK STARTS HERE //
         boolean stackFound = false;
         do{
+            
             System.out.println("Choose target stack");
             temp = scan.nextLine();
             targetStack = game.findStack(temp);
@@ -89,24 +90,31 @@ public class Turn {
     
     public void botStart(){
         //CARD PICKING//
+        int temp4 = 0;
+        int temp3 = 0;
         boolean cardPicked = false;
-        boolean isMatchable = false;
         for(int i = 0 ; i<player.getHand().length;i++){
             if((!game.findStack("Stack Slot1").isEmpty()  && player.getHand()[i].getStatus().equals(game.findStack("Stack Slot1").peek().getStatus()) ) || (!game.findStack("Stack Slot2").isEmpty()  && player.getHand()[i].getStatus().equals(game.findStack("Stack Slot2").peek().getStatus()) )||(!game.findStack("Stack Slot3").isEmpty()  && player.getHand()[i].getStatus().equals(game.findStack("Stack Slot3").peek().getStatus()) )||(!game.findStack("Stack Slot4").isEmpty()  && player.getHand()[i].getStatus().equals(game.findStack("Stack Slot4").peek().getStatus()) )||(!game.findStack("Player1 Stack").isEmpty()  && player.getHand()[i].getStatus().equals(game.findStack("Player1 Stack").peek().getStatus()) )||(!game.findStack("Player2 Stack").isEmpty()  && player.getHand()[i].getStatus().equals(game.findStack("Player2 Stack").peek().getStatus()) )||(!game.findStack("Player3 Stack").isEmpty()  && player.getHand()[i].getStatus().equals(game.findStack("Player3 Stack").peek().getStatus()) )||(!game.findStack("Player4 Stack").isEmpty()  && player.getHand()[i].getStatus().equals(game.findStack("Player4 Stack").peek().getStatus()) ) || (!game.findStack("Main Stack").isEmpty()  && player.getHand()[i].getStatus().equals(game.findStack("Main Stack").peek().getStatus()) ) ){
             cardPicked = true;
-            isMatchable = true;
             pickedCard = player.getHand()[i];
+            temp4 = i;
             break;
             }
         }
         if(!cardPicked){
                 int temp = (int)(Math.random()*player.getHand().length);
                 pickedCard = player.getHand()[temp];
+                temp4 = temp;
             }
+        Card[] tempCard = new Card[player.getHand().length-1];
+        for(int i = 0 ; i<player.getHand().length;i++){
+            if(i != temp4) tempCard[temp3++] = player.getHand()[i];
+        }
+        player.setHand(tempCard);
         //ENDS HERE//
         
         //CHOOSING TARGET STACK//
-        if(isMatchable){
+        
             if((!game.findStack("Stack Slot1").isEmpty()  && pickedCard.getStatus().equals(game.findStack("Stack Slot1").peek().getStatus()) )) targetStack = game.findStack("Stack Slot1");
             else if((!game.findStack("Stack Slot2").isEmpty()  && pickedCard.getStatus().equals(game.findStack("Stack Slot2").peek().getStatus()) )) targetStack = game.findStack("Stack Slot2");
             else if((!game.findStack("Stack Slot3").isEmpty()  && pickedCard.getStatus().equals(game.findStack("Stack Slot3").peek().getStatus()) )) targetStack = game.findStack("Stack Slot3");
@@ -116,14 +124,16 @@ public class Turn {
             else if((!game.findStack("Player3 Stack").isEmpty()  && pickedCard.getStatus().equals(game.findStack("Player3 Stack").peek().getStatus()) )) targetStack = game.findStack("Player3 Stack");
             else if((!game.findStack("Player4 Stack").isEmpty()  && pickedCard.getStatus().equals(game.findStack("Player4 Stack").peek().getStatus()) )) targetStack = game.findStack("Player4 Stack");
             else targetStack = game.findStack("Main Stack");
-        }
-        else targetStack = game.findStack("Main Stack");
+        
         //ENDS HERE//
         
         //CHOOSING VICTIM STACK//
         boolean selfVictim = false;
+        int temp2 = 0;
+        String playerStackName = ""+player.getName()+" Stack";
         do{
-        int temp2 = (int)(Math.random()*4);
+            
+            temp2 = (int)(Math.random()*4);
             switch (temp2) {
                 case 0:
                     victimStack = game.findStack("Player1 Stack");
@@ -138,7 +148,7 @@ public class Turn {
                     victimStack = game.findStack("Player4 Stack");
                     break;
             }
-        if(victimStack == player.getStack()) selfVictim = true;
+        if(victimStack == targetStack || victimStack == game.findStack(playerStackName)) { selfVictim = true;}
         else selfVictim = false;
             }while(selfVictim);
         //ENDS HERE//

@@ -4,12 +4,12 @@ import java.util.Stack;
 
 
 public class Game {
-    private Table table; // STATIC
-    private Player player1;  //STATIC
-    private Player player2;   //STATIC
-    private Player player3;      //STATIC
-    private Player player4;    //STATIC
-    private Deck deck;          //STATIC
+    private static Table table; // STATIC
+    private static Player player1;  //STATIC
+    private static Player player2;   //STATIC
+    private static Player player3;      //STATIC
+    private static Player player4;    //STATIC
+    private static Deck deck;          //STATIC
     
     public Game(Table table,Player player1,Player player2,Player player3,Player player4,Deck deck){
         this.table=table;
@@ -72,7 +72,9 @@ public class Game {
         else if(stackName.equals("Stack Slot4")) return table.getStackSlot4();
         else if(stackName.equals("Main Stack")) return table.getMainStack();
         else if(stackName.equals("Dummy Stack")) return table.getDummyStack();
-        else return table.getDummyStack();
+        else {
+            return table.getDummyStack();
+        }
     }
     
     public String printInfo(){
@@ -157,10 +159,28 @@ public class Game {
         deck.tableDeal(table);
         
         
-        for(int i = 0 ; i<4;i++){
+        for(int i = 0 ; i<3;i++){
             deck.deal(player1, player2, player3, player4);
             round.botStart();
         }
+        player1.setPoints(game.getPoint(player1.getStack()));
+        player2.setPoints(game.getPoint(player2.getStack()));
+        player3.setPoints(game.getPoint(player3.getStack()));
+        player4.setPoints(game.getPoint(player4.getStack()));
+        int temp = player1.getPoints();
+        if(player2.getPoints() >= temp) temp = player2.getPoints();
+        if(player3.getPoints() >= temp) temp = player3.getPoints();
+        if(player4.getPoints() >= temp) temp = player4.getPoints();
+        if(temp == player1.getPoints()) System.out.println("Player1 LOST! with "+temp+" Points." );
+        else if(temp == player2.getPoints()) System.out.println("Player2 LOST!"+temp+" Points.");
+        else if(temp == player3.getPoints()) System.out.println("Player3 LOST!"+temp+" Points.");
+        else if(temp == player4.getPoints()) System.out.println("Player4 LOST!"+temp+" Points.");
+        System.out.println(player1.getPoints());
+        System.out.println(player2.getPoints());
+        System.out.println(player3.getPoints());
+        System.out.println(player4.getPoints());
+        
     }
+    
         
 }

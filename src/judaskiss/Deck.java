@@ -92,6 +92,7 @@ public class Deck {
     public void deal(Player player1,Player player2,Player player3, Player player4){
         for(int i = 0 ; i<player1.getHand().length;i++){
             player1.getHand()[i] = stack.pop();
+            
         }
         for(int i = 0 ; i<player2.getHand().length;i++){
             player2.getHand()[i] = stack.pop();
@@ -101,6 +102,7 @@ public class Deck {
         }
         for(int i = 0 ; i<player4.getHand().length;i++){
             player4.getHand()[i] = stack.pop();
+            
         }
     }
     

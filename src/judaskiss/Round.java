@@ -36,7 +36,7 @@ public class Round {
         Turn turn3=new Turn(player3,game);
         Turn turn4=new Turn(player4,game);
         for(int i = 0 ; i<4;i++){
-        turn1.start();
+        turn1.botStart();
         turn2.botStart();
         turn3.botStart();
         turn4.botStart();
